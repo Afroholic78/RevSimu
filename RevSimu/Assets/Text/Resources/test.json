@@ -1,0 +1,6 @@
+{
+	"defaut":{"message":"", background:"", "options":[],
+	"start":{"message":"", "background":"xxxxx", "options":["start2"]},
+	"start":{"message":"fasdfa", "background":"xxxxx", "options":["start3"]},
+	"Second test":{"message":"Stuffffff2! Look at all this stuff! WOW!", "next":"third test"}
+}
