@@ -446,8 +446,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: -35, y: 85}
-  m_SizeDelta: {x: 700, y: 50}
+  m_AnchoredPosition: {x: -35, y: 65}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &553681998
 MonoBehaviour:
@@ -473,7 +473,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: oi m8
 --- !u!222 &553681999
 CanvasRenderer:
@@ -495,6 +495,9 @@ MonoBehaviour:
   rightNameText: {fileID: 0}
   leftNameText: {fileID: 0}
   convoText: {fileID: 0}
+  rightNameBackground: {fileID: 0}
+  leftNameBackground: {fileID: 0}
+  convoBackground: {fileID: 0}
 --- !u!1 &1006813926
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +548,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &1050747399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1050747401}
+  - 114: {fileID: 1050747400}
+  m_Layer: 0
+  m_Name: SceneControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1050747400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050747399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30612b2a985e38a41bffeb516f45fd0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1050747401
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050747399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 290.5, y: 163.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1055629789
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +695,9 @@ MonoBehaviour:
   rightNameText: {fileID: 0}
   leftNameText: {fileID: 0}
   convoText: {fileID: 0}
+  rightNameBackground: {fileID: 0}
+  leftNameBackground: {fileID: 0}
+  convoBackground: {fileID: 0}
 --- !u!114 &1158371223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +779,9 @@ MonoBehaviour:
   rightNameText: {fileID: 0}
   leftNameText: {fileID: 0}
   convoText: {fileID: 0}
+  rightNameBackground: {fileID: 0}
+  leftNameBackground: {fileID: 0}
+  convoBackground: {fileID: 0}
 --- !u!114 &1232194044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,3 +1174,48 @@ MonoBehaviour:
   m_EffectColor: {r: .654411793, g: .654411793, b: .654411793, a: .501960814}
   m_EffectDistance: {x: 4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!1 &1928019584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1928019586}
+  - 114: {fileID: 1928019585}
+  m_Layer: 0
+  m_Name: ConvoControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1928019585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928019584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a4268390b9ecf4eba74eda2eab0c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightNameText: {fileID: 0}
+  leftNameText: {fileID: 0}
+  convoText: {fileID: 0}
+  rightNameBackground: {fileID: 0}
+  leftNameBackground: {fileID: 0}
+  convoBackground: {fileID: 0}
+--- !u!4 &1928019586
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928019584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 290.5, y: 163.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
