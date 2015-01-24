@@ -1,6 +1,6 @@
 # RevSimu (Working Title)
 
-Global Game Jam, January 2015
+Global Game Jam, January 2015, Edmonton, AB, Canada
 
 Theme: "What do we do now?"
 
