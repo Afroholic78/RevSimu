@@ -19,7 +19,7 @@ public class JSONLoader {
 
 	}
 
-	public SceneNode getScene(string nodeName) {
+	public SceneNode getSceneNode(string nodeName) {
 		string name = this.node [nodeName] ["name"];
 		string message = this.node [nodeName] ["message"];
 		string backgroundFile = this.node [nodeName] ["backgound"];
@@ -35,7 +35,7 @@ public class JSONLoader {
 		foreach (string op in options) {
 			Debug.Log(op);
 		}
-		return new SceneNode (name, message, backgroundFile, options);
+		return new SceneNode (name, message, backgroundFile, charName, options);
 	}
 
 }
