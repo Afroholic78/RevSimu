@@ -49,6 +49,7 @@ public class TextBoxScript : MonoBehaviour {
 	void Start () {
 		// Find and associate text box components
 		GameObject convoGO = GameObject.Find("ConvoText");
+		GameObject convoCanvasGO = GameObject.Find("ConvoCanvas");
 		convoText = convoGO.GetComponent <Text> ();
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
