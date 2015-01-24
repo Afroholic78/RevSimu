@@ -7,10 +7,10 @@ Theme: "What do we do now?"
 *game decription*
 
 ## Team Members:
-*Cody Schiebelbein
-*Lisa Lindsay
-*Monir Imamverdi
-*Braedy Kuzma
-*Mickael Zerihoun
+* Cody Schiebelbein
+* Lisa Lindsay
+* Monir Imamverdi
+* Braedy Kuzma
+* Mickael Zerihoun
 
 
