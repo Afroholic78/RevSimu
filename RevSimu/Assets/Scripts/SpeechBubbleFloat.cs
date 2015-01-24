@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class speech_bubble_float : MonoBehaviour {
+public class SpeechBubbleFloat : MonoBehaviour {
 
     private bool toggle = true;
     private float duration = 1.0f;
