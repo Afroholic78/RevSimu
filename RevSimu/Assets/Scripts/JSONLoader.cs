@@ -10,6 +10,8 @@ public class JSONLoader {
 		// http://answers.unity3d.com/questions/761628/create-a-glossary-using-simple-json-loading-data-d.html
 
 		TextAsset textAss = Resources.Load<TextAsset> (fileName);
+		if (textAss == null)
+			Debug.LogError ("Text asset failed load " + fileName + ".");
 
 		this.node = SimpleJSON.JSONNode.Parse(textAss.text);
 		if (this.node == null)
@@ -20,7 +22,7 @@ public class JSONLoader {
 	}
 
 	public SceneNode getSceneNode(string nodeName) {
-		string name = this.node [nodeName] ["name"];
+		string name = nodeName;
 		string message = this.node [nodeName] ["message"];
 		string backgroundFile = this.node [nodeName] ["backgound"];
 		string charName = this.node [nodeName] ["charName"];
