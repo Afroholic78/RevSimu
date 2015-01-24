@@ -70,6 +70,10 @@ public class SceneNode {
 		return options[index];
 	}
 
+	public int getOptionCount() {
+		return options.Count;
+	}
+
 	public string getBackgroundFilename() {
 		return this.backgroundFile;
 	}
