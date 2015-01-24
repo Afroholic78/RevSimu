@@ -16,6 +16,11 @@ public class TextBoxScript : MonoBehaviour {
 	public Image leftNameBackground; // reference to background image in left image box
 	public Image convoBackground; // reference to backgroun image in dialogue box
 
+	private bool fadeOut = false; // Fade out boolean. If false: rightNameBox is visibile, leftNameBox is invisible
+	private float duration = 1.0f; // Duration float used for fading
+	public float speed = 0f; // Speed of fade
+
+
 	private bool LoadFromFile(string filename) {
 		// Function used to read text from a file to display
 		// inside our conversation/dialogue box.
@@ -55,6 +60,12 @@ public class TextBoxScript : MonoBehaviour {
 		// Function makes the passed GameObject fade out.
 		// Will be called during click and timer events
 
+		Color textureColor = renderer.material.color; // Color object, used for alpha channel
+		if (fadeOut)
+		{
+			textureColor.a = duration - Mathf.PingPong(Time.time + speed, duration) / duration;
+			renderer.material.color = textureColor;
+		}
 	}
 	
 	// Use this for initialization
