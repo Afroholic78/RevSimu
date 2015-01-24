@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Text;
 using System.IO;
 
 public class ConvoBoxScript : MonoBehaviour {
 
-
+	public Text text; // reference to Text component
+	
 	private bool LoadFromFile(string filename) {
 		// Function used to read text from a file to display
 		// inside our conversation/dialogue box.
@@ -14,7 +16,7 @@ public class ConvoBoxScript : MonoBehaviour {
 		{
 			string line;
 			
-			StreamReader reader = new StreaReader(filename, Encoding.Default); // create StreamReader object to read given file
+			StreamReader reader = new StreamReader(filename, Encoding.Default); // create StreamReader object to read given file
 			using(reader) // clean up the reader
 			{ 
 				do 
@@ -33,20 +35,20 @@ public class ConvoBoxScript : MonoBehaviour {
 			}
 		}
 
-		catch (Exception e)
+		catch (System.Exception e)
 		{
-			Console.WriteLine("{0}\n", e.Message);
+			Debug.Log(e.ToString());
 			return false;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-	
+		text = 	GetComponent <Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		text.text = "LOL THIS IS ACTUALLY WORKING!";
 	}
 }
