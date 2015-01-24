@@ -10,6 +10,10 @@ public class TextBoxScript : MonoBehaviour {
 	public Text leftNameText; // reference to text component in left name box
 	public Text convoText; // reference to text component in dialogue box
 	
+	public Image rightNameBackground; // reference to background image in right image box
+	public Image leftNameBackground; // reference to background image in left image box
+	public Image convoBackground; // reference to backgroun image in dialogue box
+
 	private bool LoadFromFile(string filename) {
 		// Function used to read text from a file to display
 		// inside our conversation/dialogue box.
@@ -44,18 +48,29 @@ public class TextBoxScript : MonoBehaviour {
 			return false;
 		}
 	}
+
+	private void FadeOut(GameObject imageGO) {
+		// Function makes the passed GameObject fade out.
+		// Will be called during click and timer events
+
+	}
 	
 	// Use this for initialization
 	void Start () {
 		// Find and associate text box components
 		GameObject convoGO = GameObject.Find("ConvoText");
-		GameObject convoCanvasGO = GameObject.Find("ConvoCanvas");
+		GameObject convoBackgroundGO = GameObject.Find("ConvoBackground");
+		convoBackground = convoBackgroundGO.GetComponent <Image> ();
 		convoText = convoGO.GetComponent <Text> ();
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
+		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
+		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> ();
 		rightNameText = rightNameGO.GetComponent <Text> ();
 
 		GameObject leftNameGO = GameObject.Find("LeftNameText");
+		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
+		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
 	}
 	
