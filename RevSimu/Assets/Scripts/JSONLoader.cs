@@ -32,9 +32,6 @@ public class JSONLoader {
 		for (int i = 0; i < a.Count; ++i) {
 			options.Add (a[i]);
 		}
-		foreach (string op in options) {
-			Debug.Log(op);
-		}
 		return new SceneNode (name, message, backgroundFile, charName, options);
 	}
 
