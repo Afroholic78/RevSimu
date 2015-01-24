@@ -13,6 +13,7 @@ public class SpeechBubbleFloat : MonoBehaviour {
     public Transform target;
     public float smooth = 1000.0F;
     public float speed = 0f;
+    public string id;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,8 @@ public class SpeechBubbleFloat : MonoBehaviour {
         endDest = transform.position + new Vector3(0.5f, 0, 0);
         leftDest = transform.position - new Vector3(0.5f, 0, 0);
         origin = transform.position;
+        //SET A DISCUSSION ID 
+        //id = ;
 	}
 
     void OnMouseDown()
