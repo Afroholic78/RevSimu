@@ -650,9 +650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a4268390b9ecf4eba74eda2eab0c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightNameText: {fileID: 1158371223}
-  leftNameText: {fileID: 1232194044}
-  convoText: {fileID: 553681998}
+  rightNameText: {fileID: 0}
+  leftNameText: {fileID: 0}
+  convoText: {fileID: 0}
 --- !u!114 &1158371223
 MonoBehaviour:
   m_ObjectHideFlags: 0
