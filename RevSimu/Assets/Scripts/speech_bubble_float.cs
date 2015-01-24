@@ -4,7 +4,6 @@ using System.Collections;
 public class speech_bubble_float : MonoBehaviour {
 
     private bool toggle = true;
-    private float x = 0.01f;
     private float duration = 1.0f;
     public Vector3 startMarker;
     public Vector3 endDest;
@@ -14,7 +13,6 @@ public class speech_bubble_float : MonoBehaviour {
     public Transform target;
     public float smooth = 1000.0F;
     public float speed = 0f;
-    private float derpTime = 0;
 
 	// Use this for initialization
 	void Start () {
