@@ -9,7 +9,7 @@ public class JSONLoader {
 	public JSONLoader(string fileName) {
 		// http://answers.unity3d.com/questions/761628/create-a-glossary-using-simple-json-loading-data-d.html
 
-		TextAsset textAss = Resources.Load<TextAsset> ("test");
+		TextAsset textAss = Resources.Load<TextAsset> (fileName);
 
 		this.node = SimpleJSON.JSONNode.Parse(textAss.text);
 		if (this.node == null)
