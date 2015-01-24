@@ -73,6 +73,6 @@ public class SceneNode {
 	}
 
 	public string getCharName() {
-		return this.getCharName;
+		return this.charName;
 	}
 }
