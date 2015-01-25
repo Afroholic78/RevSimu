@@ -61,10 +61,6 @@ public class TextBoxScript : MonoBehaviour {
 			if (rightNameCanvasGroup.alpha <= 0.05f) { rightNameCanvasGroup.alpha = 0; }
 			else if (rightNameCanvasGroup.alpha > 0) { rightNameCanvasGroup.alpha -= Time.deltaTime/duration; } // right fade out
 		}
-
-		// Track alpha values in debug
-		//Debug.LogWarning(leftNameCanvasGroup.alpha);
-		//Debug.LogWarning(rightNameCanvasGroup.alpha);
 	}
 	
 	// Use this for initialization
@@ -137,11 +133,11 @@ public class TextBoxScript : MonoBehaviour {
 		// Fade out scene
 		if (endScene == true)
 		{
-			Debug.LogWarning("FadeOutScene called!");
 			GameObject faderGO = GameObject.Find("Fader");
 			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
 			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
-			if (fader.color.a >= 1.05f) 
+			Debug.LogWarning(fader.color.a);
+			if (fader.color.a >= .95f) 
 			{ 
 				endScene = false; // flip boolean once fade out is over
 				Application.LoadLevel(Application.loadedLevel + 1); // Load next scene
@@ -214,12 +210,10 @@ public class TextBoxScript : MonoBehaviour {
 	}
 
 	private void setUpText() {
-
 		// Check if scene is over
 		if (currentNode.getMessage() == "next_scene")
 		{
 			endScene = true;
-			return; // force update()
 		}
 
 		if (!endScene) {

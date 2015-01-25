@@ -84,7 +84,7 @@
 				 "charName":"Jacquelyn", "isRight":true,
 				 "options":["node1-5"],
 				 "optionsText":["next"]},
-	"node1-5next_scene":{"message":"next_scene",
+	"node1-5":{"message":"next_scene",
 				 "leftSprite":"boy_default", "rightSprite":"girl_default",
 				 "charName":"Jacquelyn", "isRight":true,
 				 "options":[""],
