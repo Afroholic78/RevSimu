@@ -63,11 +63,11 @@
 				 "optionsText":["next"]},
 	"node1-4date2":{"message":"I'd sooner be locked inside a tower.",
 				 "background":"", "charName":"Jacquelyn", "isRight":true,
-				 "options":["node1-4"],
+				 "options":["node1-5"],
 				 "optionsText":["next"]},
 	"node1-4business":{"message":"Oh!  It's all ready M'lady.  I'll drop it off at your father's shop right away",
 				 "background":"", "charName":"Jacquelyn", "isRight":true,
-				 "options":["node1-4"],
+				 "options":["node1-5"],
 				 "optionsText":["next"]},
 	"node1-5":{"message":"next_scene"}
 
