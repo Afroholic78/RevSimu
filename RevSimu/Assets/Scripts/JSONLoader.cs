@@ -38,7 +38,8 @@ public class SceneNode {
 	private string sceneName = null;
 	private string charName = null;
 	private string message = null;
-	private string backgroundFile = null;
+	private string leftSpriteFile = null;
+	private string rightSpriteFile = null;
 	private bool isRight = false;
 	private List<string> options = null;
 	private List<string> optionsText = null;
@@ -50,7 +51,8 @@ public class SceneNode {
 	public SceneNode(string nextNodeName, JSONNode jsonNode, SceneNode prevNode) {
 		this.sceneName = nextNodeName;
 		this.message = jsonNode [nextNodeName] ["message"];
-		this.backgroundFile = jsonNode [nextNodeName] ["background"];
+		this.leftSpriteFile = jsonNode [nextNodeName] ["leftSprite"];
+		this.rightSpriteFile = jsonNode [nextNodeName] ["rightSprite"];
 		this.charName = jsonNode [nextNodeName] ["charName"];
 		this.isRight = jsonNode [nextNodeName] ["isRight"].AsBool;
 		
@@ -122,8 +124,12 @@ public class SceneNode {
 		return options.Count;
 	}
 
-	public string getBackgroundFilename() {
-		return this.backgroundFile;
+	public string getLeftSpriteFilename() {
+		return this.leftSpriteFile;
+	}
+
+	public string getRightSpriteFilename() {
+		return this.rightSpriteFile;
 	}
 
 	public string getCharName() {
