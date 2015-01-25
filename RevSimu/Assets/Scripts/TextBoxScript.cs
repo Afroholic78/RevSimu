@@ -81,7 +81,7 @@ public class TextBoxScript : MonoBehaviour {
 			Debug.LogError("Loader was null...");
 		}
 
-		this.currentNode = loader.getSceneNode (control.getStartNode ());
+		this.currentNode = loader.getSceneNode (control.getStartNode (), this.currentNode);
 		if (currentNode == null) {
 			Debug.LogError("startNode is null");
 		}
@@ -110,7 +110,7 @@ public class TextBoxScript : MonoBehaviour {
 		buttons.Add(GameObject.Find("OptionButton1"));
 		buttons.Add(GameObject.Find("OptionButton2"));
 		setUpOptions ();
-		buttons[0].AddComponent<SpeechBubbleFloat>();
+		//buttons[0].AddComponent<SpeechBubbleFloat>();
 	}
 	
 	// Update is called once per frame
@@ -122,17 +122,17 @@ public class TextBoxScript : MonoBehaviour {
 
 	public void option0() {
 		Debug.Log ("option0: " + currentNode.getOption(0));
-		currentNode = loader.getSceneNode (currentNode.getOption (0));
+		currentNode = loader.getSceneNode (currentNode.getOption (0),
+		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
 		setUpOptions ();
 	}
-
-	
 	
 	public void option1() {
 		Debug.Log ("option1: " + currentNode.getOption(1));
-		currentNode = loader.getSceneNode (currentNode.getOption (1));
+		currentNode = loader.getSceneNode (currentNode.getOption (1),
+		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
 		setUpOptions ();
@@ -140,7 +140,8 @@ public class TextBoxScript : MonoBehaviour {
 
 	public void option2() {
 		Debug.Log ("option2: " + currentNode.getOption(2));
-		currentNode = loader.getSceneNode (currentNode.getOption (2));
+		currentNode = loader.getSceneNode (currentNode.getOption (2),
+		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
 		setUpOptions ();

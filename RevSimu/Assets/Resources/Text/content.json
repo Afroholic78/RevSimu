@@ -1,8 +1,40 @@
 {
 	"defaut":{"message":"", "background":"", "charName":"", "options":[]},
-	"gamestart":{"message":"Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus.Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh",
-				 "background":"", "charName":"JohnDoe", "options":["option0", "Option2"], "optionsText": ["next", "other"]}
-	"option0":{"message":"This is option 0",
-				 "background":"", "charName":"JohnDoe", "options":["goToNext", "Option2", "more"], "optionsText": ["punch", "kick", "hit"]}
-	
+	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M’lady… I wonder if she would like…",
+				 "background":"", "charName":"Fergus",
+				 "options":["node1-0"],
+				 "optionsText":["next"]},
+	"node1-0":{"message":"You there, blacksmith’s boy!",
+				 "background":"", "charName":"Jacquelyn",
+				 "options":["node1-1"],
+				 "optionsText":["next"]},
+	"node1-1":{"message":"Oh… M’lady!  I was just thinking of…",
+				 "background":"", "charName":"Fergus",
+				 "options":["node1-2"],
+				 "optionsText":["next"]},
+	"node1-2":{"message":"Fergus—I don’t have time for your nonsense today.  Is my father’s order ready to be picked up?",
+				 "background":"", "charName":"Jacquelyn",
+				 "options":["compliment", "giveflower", "confesslove"],
+				 "optionsText":["Compliment", "Give Flower", "Confess your love"]
+				 "addUsedOption":True},
+	"compliment":{"message":"Oh Jacquelyn, your smile makes even the strongest of knights weak in the knees!",
+				 "background":"", "charName":"Fergus",
+				 "options":["compliment2"],
+				 "optionsText":["next"]
+				 "ignoreUsedOptions":true},
+	"compliment2":{"message":"Sigh...",
+				 "background":"", "charName":"Jacquelyn",
+				 "options":["node1-2"],
+				 "optionsText":["next"]
+				 "ignoreUsedOptions":true},
+	"giveflower":{"message":"I picked this flower for you, M’lday.",
+				 "background":"", "charName":"Fergus",
+				 "options":["giveflower2"],
+				 "optionsText":["next"]
+				 "ignoreUsedOptions":true},
+	"giveflower2":{"message":"That flower is wilted and smells like dung, a smell not far from your own.",
+				 "background":"", "charName":"Jacquelyn",
+				 "options":["node1-2"],
+				 "optionsText":["next"]
+				 "ignoreUsedOptions":true}
 }
