@@ -12,6 +12,9 @@ public class SceneController : MonoBehaviour {
 		} else if (name == "TemplateScene") { // Debug here
 			return "gamestart";
 		}
+		else if (name == "scene2"){
+			return "node2-1start";
+		}
 
 		return null;
 	}
