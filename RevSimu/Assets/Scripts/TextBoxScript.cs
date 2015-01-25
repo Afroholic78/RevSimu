@@ -28,10 +28,12 @@ public class TextBoxScript : MonoBehaviour {
 	public float speed = 0f; // Speed of fade
 
 	public void FadeOut() {
-		// Function makes the passed GameObject fade out.
-		// Will be called during click and timer events
+		// Function fades out text boxes containing character
+		// names deoending on who is speaking.
 
-		//Color textureColor = renderer.material.color; // Color object, used for alpha channel
+		// If right side character is speaking, fade out
+
+		// If left side characters is speaking
 		if (fadeOut == false)
 		{ 
 			convoCanvasGroup.alpha -= Time.deltaTime/duration;
@@ -68,12 +70,14 @@ public class TextBoxScript : MonoBehaviour {
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
+		GameObject righNameCanvasGO = GameObject.Find("RightNameCanvas");
+		rightNameCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> ();
 		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> ();
 		rightNameText = rightNameGO.GetComponent <Text> ();
-		// TODO add right character's name to JSON
 
 		GameObject leftNameGO = GameObject.Find("LeftNameText");
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
+		GameObject leftNameCanvasGO = GameObject.Find("LeftNameCanvas");
 		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
 		leftNameText.text = currentNode.getCharName ();
