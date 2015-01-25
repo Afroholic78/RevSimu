@@ -36,6 +36,7 @@ public class TextBoxScript : MonoBehaviour {
 	private bool endScene = false;
 
 	private void FadeOut() {
+		if (endScene) return;
 		// Function fades out text boxes containing character
 		// names deoending on who is speaking.
 
