@@ -23,12 +23,12 @@ public class TextBoxScript : MonoBehaviour {
 	public CanvasGroup leftNameCanvasGroup; // reference to left name canvasGroup
 	public CanvasGroup convoCanvasGroup; // reference to dialogue canvasGroup
 	
-	private float duration = 0.2f; // Duration float used for fading
+	private float duration = 0.15f; // Duration float used for fading
 	public float speed = 0f; // Speed of fade
 
     private bool toggle = true;
 
-	public void FadeOut() {
+	private void FadeOut() {
 		// Function fades out text boxes containing character
 		// names deoending on who is speaking.
 
@@ -40,14 +40,18 @@ public class TextBoxScript : MonoBehaviour {
 
 		if (currentNode.isRightTalking() == true)
 		{
-			leftNameCanvasGroup.alpha -= Time.deltaTime/duration; // left fade out
-			rightNameCanvasGroup.alpha += Time.deltaTime/duration; // right fade in
+			if (leftNameCanvasGroup.alpha <= 0) { leftNameCanvasGroup.alpha = 0; }
+			else if (leftNameCanvasGroup.alpha > 0) { leftNameCanvasGroup.alpha -= Time.deltaTime/duration; } // left fade out 
+			if (rightNameCanvasGroup.alpha >= 1) { rightNameCanvasGroup.alpha = 1; }
+			else if (rightNameCanvasGroup.alpha < 1) { rightNameCanvasGroup.alpha += Time.deltaTime/duration; } // right fade i
 		}
 
 		if (currentNode.isRightTalking() == false)
 		{
-			leftNameCanvasGroup.alpha += Time.deltaTime/duration; // left fade in
-			rightNameCanvasGroup.alpha -= Time.deltaTime/duration; // right fade out
+			if (leftNameCanvasGroup.alpha >= 1) { leftNameCanvasGroup.alpha = 1; }
+			else if (leftNameCanvasGroup.alpha < 1) { leftNameCanvasGroup.alpha += Time.deltaTime/duration; } // left fade in
+			if (rightNameCanvasGroup.alpha <= 0) { rightNameCanvasGroup.alpha = 0; }
+			else if (rightNameCanvasGroup.alpha > 0) { rightNameCanvasGroup.alpha -= Time.deltaTime/duration; } // right fade out
 		}
 
 		// Track alpha values in debug
@@ -110,8 +114,8 @@ public class TextBoxScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Test fade out
-		// FadeOut();
+		// Perform fading operations
+		FadeOut();
 	}
 
     void speedincrease()
