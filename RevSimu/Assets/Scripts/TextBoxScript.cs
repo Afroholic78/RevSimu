@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
 public class TextBoxScript : MonoBehaviour {
 	private JSONLoader loader = null;
 	private SceneNode currentNode = null;
+
+	private List<GameObject> buttons;
 
 	public Text rightNameText; // reference to text component in right name box
 	public Text leftNameText; // reference to text component in left name box
@@ -49,19 +52,25 @@ public class TextBoxScript : MonoBehaviour {
 			Debug.LogError("Loader was null...");
 		}
 
-		SceneNode startNode = loader.getSceneNode (control.getStartNode ());
-		if (startNode == null) {
+		this.currentNode = loader.getSceneNode (control.getStartNode ());
+		if (currentNode == null) {
 			Debug.LogError("startNode is null");
 		}
 		 
 		// Find and associate text box components
 		GameObject convoGO = GameObject.Find("ConvoText");
 		GameObject convoBackgroundGO = GameObject.Find("ConvoBackground");
+<<<<<<< HEAD
 		GameObject convoCanvasGO = GameObject.Find("ConvoCanvas");
 		convoCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
 		convoBackground = convoBackgroundGO.GetComponent <Image> (); // find image
 		convoText = convoGO.GetComponent <Text> (); // find text
 		convoText.text = startNode.getMessage (); // set text
+=======
+		convoBackground = convoBackgroundGO.GetComponent <Image> ();
+		convoText = convoGO.GetComponent <Text> ();
+		convoText.text = currentNode.getMessage ();
+>>>>>>> origin/master
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
@@ -73,7 +82,19 @@ public class TextBoxScript : MonoBehaviour {
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
 		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
+<<<<<<< HEAD
 		leftNameText.text = startNode.getCharName ();			
+=======
+		leftNameText.text = currentNode.getCharName ();
+
+
+		buttons = new List<GameObject> ();
+		buttons.Add(GameObject.Find("OptionButton0"));
+		buttons.Add(GameObject.Find("OptionButton1"));
+		buttons.Add(GameObject.Find("OptionButton2"));
+		setUpOptions ();
+		buttons[0].AddComponent<SpeechBubbleFloat>();
+>>>>>>> origin/master
 	}
 	
 	// Update is called once per frame
@@ -81,5 +102,50 @@ public class TextBoxScript : MonoBehaviour {
 		// Test fade out
 		//Invoke ("FadeOut(convoBackground)", 2);
 		FadeOut();
+	}
+
+	public void option0() {
+		Debug.Log ("option0: " + currentNode.getOption(0));
+		currentNode = loader.getSceneNode (currentNode.getOption (0));
+		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
+		setUpOptions ();
+	}
+
+	
+	
+	public void option1() {
+		Debug.Log ("option1: " + currentNode.getOption(1));
+		currentNode = loader.getSceneNode (currentNode.getOption (1));
+		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
+		setUpOptions ();
+	}
+
+	public void option2() {
+		Debug.Log ("option2: " + currentNode.getOption(2));
+		currentNode = loader.getSceneNode (currentNode.getOption (2));
+		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
+		setUpOptions ();
+	}
+
+	private void setUpOptions() {
+		int i = 0;
+		for (; i < currentNode.getOptionCount(); ++i) {
+			Color oldC = buttons[i].GetComponent<Image>().color;
+			Color c = new Color(oldC.r, oldC.g, oldC.b, 255);
+			buttons[i].GetComponent<Image>().color = c;
+			buttons[i].GetComponent<Button>().interactable = true;
+			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+		}
+		for (; i < buttons.Count; ++i) {
+			Color oldC = buttons[i].GetComponent<Image>().color;
+			Color c = new Color(oldC.r, oldC.g, oldC.b, 0);
+			buttons[i].GetComponent<Image>().color = c;
+			buttons[i].GetComponent<Button>().interactable = false;
+			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+		}
+		
 	}
 }
