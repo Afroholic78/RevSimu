@@ -34,6 +34,11 @@ public class TextBoxScript : MonoBehaviour {
     private bool toggle = true;
 	private bool startScene = true;
 	private bool endScene = false;
+	private bool endScene1 = false;
+	private bool endScene2 = false;
+	private bool endScene3 = false;
+	private bool endScene4 = false;
+
 
 	private void FadeOut() {
 		if (endScene) return;
@@ -143,6 +148,67 @@ public class TextBoxScript : MonoBehaviour {
 			}
 		}
 	}
+
+	//UGLY SHIT COMING UP
+	void FadeOutScene1() {
+		// Fade out scene
+		if (endScene1 == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			if (fader.color.a >= .95f) 
+			{ 
+				endScene = false; // flip boolean once fade out is over
+				Application.LoadLevel(Application.loadedLevel + 4); // Load next scene
+			}
+		}
+	}
+
+	void FadeOutScene2() {
+		// Fade out scene
+		if (endScene2 == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			if (fader.color.a >= .95f) 
+			{ 
+				endScene = false; // flip boolean once fade out is over
+				Application.LoadLevel(Application.loadedLevel + 2); // Load next scene
+			}
+		}
+	}
+
+	void FadeOutScene3() {
+		// Fade out scene
+		if (endScene3 == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			if (fader.color.a >= .95f) 
+			{ 
+				endScene = false; // flip boolean once fade out is over
+				Application.LoadLevel(Application.loadedLevel + 3); // Load next scene
+			}
+		}
+	}
+
+	void FadeOutScene4() {
+		// Fade out scene
+		if (endScene4 == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			if (fader.color.a >= .95f) 
+			{ 
+				endScene = false; // flip boolean once fade out is over
+				Application.LoadLevel(Application.loadedLevel + 1); // Load next scene
+			}
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -214,6 +280,27 @@ public class TextBoxScript : MonoBehaviour {
 		{
 			endScene = true;
 		}
+
+		else if (currentNode.getMessage() == "fashion_princess")
+		{
+			endScene1 = true;
+		}
+
+		else if (currentNode.getMessage() == "haircut_death")
+		{
+			endScene2 = true;
+		}
+
+		else if (currentNode.getMessage() == "dragon_princess")
+		{
+			endScene3 = true;
+		}
+
+		else if (currentNode.getMessage() == "spider_death")
+		{
+			endScene4 = true;
+		}
+
 
 		if (!endScene) {
 			convoText.text = currentNode.getMessage ();

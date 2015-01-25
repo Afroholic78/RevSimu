@@ -18,6 +18,18 @@ public class SceneController : MonoBehaviour {
 		else if (name == "scene3"){
 			return "node3-1start";
 		}
+		else if (name == "scene4"){
+			return "node4-1start";
+		}
+		else if (name == "scene5"){
+			return "node5-1start";
+		}
+		else if (name == "scene6"){
+			return "node6-1start";
+		}
+		else if (name == "scene7"){
+			return "node7-1start";
+		}
 
 		return null;
 	}
