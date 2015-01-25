@@ -1058,7 +1058,7 @@ GameObject:
   - 4: {fileID: 1208190981}
   - 212: {fileID: 1208190980}
   m_Layer: 0
-  m_Name: GirlSprite
+  m_Name: RightSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1851,7 +1851,7 @@ GameObject:
   - 4: {fileID: 2106743194}
   - 212: {fileID: 2106743193}
   m_Layer: 0
-  m_Name: ManSprite
+  m_Name: LeftSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
