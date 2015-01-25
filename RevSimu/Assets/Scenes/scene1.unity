@@ -1586,6 +1586,9 @@ MonoBehaviour:
   rightNameBackground: {fileID: 0}
   leftNameBackground: {fileID: 0}
   convoBackground: {fileID: 0}
+  rightNameCanvasGroup: {fileID: 0}
+  leftNameCanvasGroup: {fileID: 0}
+  convoCanvasGroup: {fileID: 0}
   speed: 0
 --- !u!4 &1928019586
 Transform:

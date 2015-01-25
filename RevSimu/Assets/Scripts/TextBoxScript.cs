@@ -100,7 +100,7 @@ public class TextBoxScript : MonoBehaviour {
 		//convoText.text = "LOL THIS IS ACTUALLY WORKING!";
 		//rightNameText.text = "Ladeh";
 		//leftNameText.text = "Bloke";
-        Invoke("fade", 2);
+        //Invoke("fade", 2);
 
 		// Test fade out
 		//Invoke ("FadeOut(convoBackground)", 2);

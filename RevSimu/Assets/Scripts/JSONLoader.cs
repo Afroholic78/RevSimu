@@ -43,6 +43,7 @@ public class SceneNode {
 	private string backgroundFile = null;
 	private string emptyOption = null;
 	private string emptyOptionText = null;
+	private bool isRight = false;
 	private List<string> options = null;
 	private List<string> optionsText = null;
 	private List<string> usedOptions = null;
@@ -54,6 +55,7 @@ public class SceneNode {
 		this.message = jsonNode [nextNodeName] ["message"];
 		this.backgroundFile = jsonNode [nextNodeName] ["background"];
 		this.charName = jsonNode [nextNodeName] ["charName"];
+		this.isRight = jsonNode [nextNodeName] ["isRight"].AsBool;
 		
 		this.saveOptions = jsonNode [nextNodeName] ["addUsedOption"].AsBool;
 
@@ -134,5 +136,9 @@ public class SceneNode {
 
 	public bool getSaveOptions() {
 		return this.saveOptions;
+	}
+
+	public bool isRightTalking() {
+		return this.isRight;
 	}
 }
