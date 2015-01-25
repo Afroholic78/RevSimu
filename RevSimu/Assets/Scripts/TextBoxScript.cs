@@ -22,9 +22,8 @@ public class TextBoxScript : MonoBehaviour {
 	public CanvasGroup rightNameCanvasGroup; // reference to right name canvasGroup
 	public CanvasGroup leftNameCanvasGroup; // reference to left name canvasGroup
 	public CanvasGroup convoCanvasGroup; // reference to dialogue canvasGroup
-
-	private bool fadeOut = false; // Fade out boolean. If false: rightNameBox is visibile, leftNameBox is invisible
-	private float duration = 1.0f; // Duration float used for fading
+	
+	private float duration = 0.2f; // Duration float used for fading
 	public float speed = 0f; // Speed of fade
 
     private bool toggle = true;
@@ -36,6 +35,34 @@ public class TextBoxScript : MonoBehaviour {
 		// If right side character is speaking, fade out
 		// If left side characters is speaking
 
+		float leftAlpha = leftNameCanvasGroup.alpha;
+		float rightAlpha = rightNameCanvasGroup.alpha;
+
+		if (currentNode.isRightTalking() == true)
+		{
+			// Limit arithmetic operations
+			if (leftNameCanvasGroup.alpha <= 0) { leftNameCanvasGroup.alpha = 0; }
+			if (rightNameCanvasGroup.alpha >= 1) { rightNameCanvasGroup.alpha = 1; }
+
+			leftNameCanvasGroup.alpha -= Time.deltaTime/duration; // left fade out
+			rightNameCanvasGroup.alpha += Time.deltaTime/duration; // right fade in
+		}
+
+		if (currentNode.isRightTalking() == false)
+		{
+			// Limit arithmetic operations
+			if (leftNameCanvasGroup.alpha >= 1) { leftNameCanvasGroup.alpha = 0; }
+			if (rightNameCanvasGroup.alpha <= 0) { rightNameCanvasGroup.alpha = 1; }
+
+			leftNameCanvasGroup.alpha += Time.deltaTime/duration; // left fade in
+			rightNameCanvasGroup.alpha -= Time.deltaTime/duration; // right fade out
+		}
+
+		// Track alpha values in debug
+		//Debug.LogWarning(leftNameCanvasGroup.alpha);
+		Debug.LogWarning(rightNameCanvasGroup.alpha);
+		
+		/*
 		if (fadeOut == false)
 		{ 
 			convoCanvasGroup.alpha -= Time.deltaTime/duration;
@@ -44,20 +71,20 @@ public class TextBoxScript : MonoBehaviour {
 				fadeOut = true;
 			}
 		}
+		*/
 	}
-
 	
 	// Use this for initialization
 	void Start () {
 		GameObject sceneControl = GameObject.Find ("SceneControl");
 		SceneController control = sceneControl.GetComponent<MonoBehaviour> () as SceneController;
 
-		loader = new JSONLoader (control.getJSONFilename());
+		loader = new JSONLoader (control.getJSONFilename()); // initialize JSON loader
 		if (loader == null) {
-			Debug.LogError("Loader was null...");
+			Debug.LogError("Loader was null");
 		}
 
-		this.currentNode = loader.getSceneNode (control.getStartNode (), this.currentNode);
+		this.currentNode = loader.getSceneNode (control.getStartNode (), this.currentNode); // load scene JSON nodes
 		if (currentNode == null) {
 			Debug.LogError("startNode is null");
 		}
@@ -74,16 +101,23 @@ public class TextBoxScript : MonoBehaviour {
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
 		GameObject righNameCanvasGO = GameObject.Find("RightNameCanvas");
-		rightNameCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> ();
-		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> ();
-		rightNameText = rightNameGO.GetComponent <Text> ();
+		rightNameCanvasGroup = righNameCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
+		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> (); // find image
+		rightNameText = rightNameGO.GetComponent <Text> (); // find text
+		//rightNameText.text = currentNode.getCharName (); // set text
+		// TODO When should I get text for character on the right?
 
 		GameObject leftNameGO = GameObject.Find("LeftNameText");
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
 		GameObject leftNameCanvasGO = GameObject.Find("LeftNameCanvas");
-		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
-		leftNameText = leftNameGO.GetComponent <Text> ();
-		leftNameText.text = currentNode.getCharName ();
+		leftNameCanvasGroup = leftNameCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
+		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> (); // find image
+		leftNameText = leftNameGO.GetComponent <Text> (); // find text
+		leftNameText.text = currentNode.getCharName (); // set text
+
+		// Decide which name box to show first
+		if (currentNode.isRightTalking() == true) { leftNameCanvasGroup.alpha = 0; }
+		if (currentNode.isRightTalking() == false) { rightNameCanvasGroup.alpha = 0; }
 
 
 		buttons = new List<GameObject> ();
@@ -96,16 +130,8 @@ public class TextBoxScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		//convoText.text = "LOL THIS IS ACTUALLY WORKING!";
-		//rightNameText.text = "Ladeh";
-		//leftNameText.text = "Bloke";
-        //Invoke("fade", 2);
-
 		// Test fade out
-		//Invoke ("FadeOut(convoBackground)", 2);
 		FadeOut();
-
 	}
 
     void speedincrease()
