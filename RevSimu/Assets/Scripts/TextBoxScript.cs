@@ -60,17 +60,11 @@ public class TextBoxScript : MonoBehaviour {
 		// Find and associate text box components
 		GameObject convoGO = GameObject.Find("ConvoText");
 		GameObject convoBackgroundGO = GameObject.Find("ConvoBackground");
-<<<<<<< HEAD
 		GameObject convoCanvasGO = GameObject.Find("ConvoCanvas");
 		convoCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
 		convoBackground = convoBackgroundGO.GetComponent <Image> (); // find image
 		convoText = convoGO.GetComponent <Text> (); // find text
-		convoText.text = startNode.getMessage (); // set text
-=======
-		convoBackground = convoBackgroundGO.GetComponent <Image> ();
-		convoText = convoGO.GetComponent <Text> ();
-		convoText.text = currentNode.getMessage ();
->>>>>>> origin/master
+		convoText.text = currentNode.getMessage (); // set text
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
@@ -82,9 +76,6 @@ public class TextBoxScript : MonoBehaviour {
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
 		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
-<<<<<<< HEAD
-		leftNameText.text = startNode.getCharName ();			
-=======
 		leftNameText.text = currentNode.getCharName ();
 
 
@@ -94,7 +85,6 @@ public class TextBoxScript : MonoBehaviour {
 		buttons.Add(GameObject.Find("OptionButton2"));
 		setUpOptions ();
 		buttons[0].AddComponent<SpeechBubbleFloat>();
->>>>>>> origin/master
 	}
 	
 	// Update is called once per frame
