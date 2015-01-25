@@ -33,7 +33,7 @@ public class TextBoxScript : MonoBehaviour {
 
 
 
-	private void FadeOut(GameObject imageGO) {
+
 
 	public void FadeOut() {
 
@@ -50,6 +50,7 @@ public class TextBoxScript : MonoBehaviour {
 			}
 		}
 	}
+
 	
 	// Use this for initialization
 	void Start () {
