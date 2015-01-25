@@ -55,8 +55,8 @@ public class TextBoxScript : MonoBehaviour {
 		}
 
 		// Track alpha values in debug
-		Debug.LogWarning(leftNameCanvasGroup.alpha);
-		Debug.LogWarning(rightNameCanvasGroup.alpha);
+		//Debug.LogWarning(leftNameCanvasGroup.alpha);
+		//Debug.LogWarning(rightNameCanvasGroup.alpha);
 	}
 	
 	// Use this for initialization
@@ -188,12 +188,25 @@ public class TextBoxScript : MonoBehaviour {
 	private void setUpOptions() {
 		int i = 0;
 		for (; i < currentNode.getOptionCount(); ++i) {
-			Color oldC = buttons[i].GetComponent<Image>().color;
-			Color c = new Color(oldC.r, oldC.g, oldC.b, 255);
-			buttons[i].GetComponent<Image>().color = c;
-			buttons[i].GetComponent<Button>().interactable = true;
-			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
-
+			// Make next button invisible
+			if (currentNode.getOptionText(i) == "next")
+			{
+				Color oldNextC = buttons[i].GetComponent<Image>().color;
+				Color nextC = new Color(oldNextC.r, oldNextC.g, oldNextC.b, 0);
+				buttons[i].GetComponent<Image>().color = nextC;
+				buttons[i].GetComponent<RectTransform>().sizeDelta = new Vector2(2000, 2000);
+				buttons[i].GetComponent<Button>().interactable = true;
+				buttons[i].GetComponentInChildren<Text>().text = "";
+			}
+			else
+			{
+				Color oldC = buttons[i].GetComponent<Image>().color;
+				Color c = new Color(oldC.r, oldC.g, oldC.b, 255);
+				buttons[i].GetComponent<Image>().color = c;
+				buttons[i].GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+				buttons[i].GetComponent<Button>().interactable = true;
+				buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+			}
 		}
 		for (; i < buttons.Count; ++i) {
 			Color oldC = buttons[i].GetComponent<Image>().color;

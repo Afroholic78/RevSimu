@@ -1,6 +1,6 @@
 {
 	"defaut":{"message":"", "background":"", "charName":"", "options":[]},
-	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M’lady… I wonder if she would like them...",
+	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M'lady... I wonder if she would like them...",
 				 "background":"", "charName":"Fergus", "isRight":false,
 				 "options":["node1-0"],
 				 "optionsText":["next"]},
@@ -8,7 +8,7 @@
 				 "background":"", "charName":"Jacquelyn", "isRight":true,
 				 "options":["node1-1"],
 				 "optionsText":["next"]},
-	"node1-1":{"message":"Oh… M’lady!  I was just thinking of…",
+	"node1-1":{"message":"Oh... M’lady!  I was just thinking of...",
 				 "background":"", "charName":"Fergus", "isRight":false,
 				 "options":["node1-2"],
 				 "optionsText":["next"]},
