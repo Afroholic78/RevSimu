@@ -174,6 +174,10 @@ public class TextBoxScript : MonoBehaviour {
 
 	private void setUpText() {
 		convoText.text = currentNode.getMessage ();
+		if (convoText.text == "next_scene")
+		{
+			// Receive signal to move to next scene
+		}
 		if (currentNode.isRightTalking () &&
 		    !rightNameText.text.Equals(currentNode.getCharName ())) {
 			rightNameText.text = currentNode.getCharName ();
