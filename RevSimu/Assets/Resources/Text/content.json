@@ -52,7 +52,7 @@
 				 "optionsText":["next"],
 				 "ignoreUsedOptions":true},
 	"confesslove2":{"message":"What are you still doing here, you oaf!",
-				 "leftSprite":"boy_default", "rightSprite":"girl_angry",
+				 "leftSprite":"boy_sad", "rightSprite":"girl_angry",
 				 "charName":"Jacquelyn", "isRight":true,
 				 "options":["endbenice"],
 				 "optionsText":["next"],
