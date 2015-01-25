@@ -136,6 +136,7 @@ public class TextBoxScript : MonoBehaviour {
 		// Fade out scene
 		if (endScene == true)
 		{
+			Debug.LogWarning("FadeOutScene called!");
 			GameObject faderGO = GameObject.Find("Fader");
 			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
 			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
@@ -218,6 +219,7 @@ public class TextBoxScript : MonoBehaviour {
 		if (convoText.text == "next_scene")
 		{
 			endScene = true;
+			return; // force update()
 		}
 
 		if (currentNode.isRightTalking () &&
