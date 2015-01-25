@@ -20,7 +20,7 @@ public class JSONLoader {
 
 	public SceneNode getSceneNode(string nextNodeName, SceneNode oldNode) {
 		SceneNode next = new SceneNode (nextNodeName, this.node, oldNode);
-		if (next.getSkipMe () && !next.getMessage().Equals("next_scene")) {
+		if (next.getSkipMe () && !next.getMessage().Equals("next_scene") && !next.getMessage().Equals("fashion_princess") && !next.getMessage().Equals("haircut_death")  && !next.getMessage().Equals("dragon_princess") && !next.getMessage().Equals("spider_death")) {
 			if(next.getEmptyOption() == null)
 				Debug.LogError("Empty emptyOptionInfo on skipme: " + next.getName() +
 				               ", old: " + oldNode.getName() +
@@ -89,6 +89,7 @@ public class SceneNode {
 		}
 
 		// Bad number
+
 		if(this.options.Count != this.optionsText.Count)
 			Debug.LogError("Unequal amount of options/destinations for " + this.sceneName);
 

@@ -215,6 +215,10 @@ public class TextBoxScript : MonoBehaviour {
 		FadeInScene();
 		FadeOut(); // Perform fading operations
 		FadeOutScene();
+		FadeOutScene1();
+		FadeOutScene2();
+		FadeOutScene3();
+		FadeOutScene4();
 	}
 
     void speedincrease()
