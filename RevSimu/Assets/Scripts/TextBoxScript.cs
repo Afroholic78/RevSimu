@@ -27,27 +27,15 @@ public class TextBoxScript : MonoBehaviour {
 	private float duration = 1.0f; // Duration float used for fading
 	public float speed = 0f; // Speed of fade
 
-
     private bool toggle = true;
 
-
-
-
-
-
 	public void FadeOut() {
-<<<<<<< HEAD
 		// Function fades out text boxes containing character
 		// names deoending on who is speaking.
-=======
-
-		// Function makes the passed GameObject fade out.
-		// Will be called during click and timer events
->>>>>>> origin/master
 
 		// If right side character is speaking, fade out
-
 		// If left side characters is speaking
+
 		if (fadeOut == false)
 		{ 
 			convoCanvasGroup.alpha -= Time.deltaTime/duration;
