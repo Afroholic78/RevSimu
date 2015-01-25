@@ -121,18 +121,29 @@ public class TextBoxScript : MonoBehaviour {
 	}
 
 	public void option0() {
-		Debug.Log ("option1: " + currentNode.getOption(0));
+		Debug.Log ("option0: " + currentNode.getOption(0));
 		currentNode = loader.getSceneNode (currentNode.getOption (0));
 		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
 		setUpOptions ();
 	}
 
 	
 	
 	public void option1() {
+		Debug.Log ("option1: " + currentNode.getOption(1));
+		currentNode = loader.getSceneNode (currentNode.getOption (1));
+		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
+		setUpOptions ();
 	}
-	
+
 	public void option2() {
+		Debug.Log ("option2: " + currentNode.getOption(2));
+		currentNode = loader.getSceneNode (currentNode.getOption (2));
+		convoText.text = currentNode.getMessage ();
+		leftNameText.text = currentNode.getCharName ();
+		setUpOptions ();
 	}
 
 	private void setUpOptions() {
