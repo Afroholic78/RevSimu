@@ -136,7 +136,6 @@ public class TextBoxScript : MonoBehaviour {
 			GameObject faderGO = GameObject.Find("Fader");
 			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
 			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
-			Debug.LogWarning(fader.color.a);
 			if (fader.color.a >= .95f) 
 			{ 
 				endScene = false; // flip boolean once fade out is over
