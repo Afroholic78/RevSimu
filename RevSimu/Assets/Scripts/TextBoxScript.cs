@@ -27,9 +27,23 @@ public class TextBoxScript : MonoBehaviour {
 	private float duration = 1.0f; // Duration float used for fading
 	public float speed = 0f; // Speed of fade
 
+
+    private bool toggle = true;
+
+
+
+
+
+
 	public void FadeOut() {
+<<<<<<< HEAD
 		// Function fades out text boxes containing character
 		// names deoending on who is speaking.
+=======
+
+		// Function makes the passed GameObject fade out.
+		// Will be called during click and timer events
+>>>>>>> origin/master
 
 		// If right side character is speaking, fade out
 
@@ -43,6 +57,7 @@ public class TextBoxScript : MonoBehaviour {
 			}
 		}
 	}
+
 	
 	// Use this for initialization
 	void Start () {
@@ -88,16 +103,53 @@ public class TextBoxScript : MonoBehaviour {
 		buttons.Add(GameObject.Find("OptionButton1"));
 		buttons.Add(GameObject.Find("OptionButton2"));
 		setUpOptions ();
-		buttons[0].AddComponent<SpeechBubbleFloat>();
+		//buttons[0].AddComponent<SpeechBubbleFloat>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		//convoText.text = "LOL THIS IS ACTUALLY WORKING!";
+		//rightNameText.text = "Ladeh";
+		//leftNameText.text = "Bloke";
+        Invoke("fade", 2);
+
 		// Test fade out
 		//Invoke ("FadeOut(convoBackground)", 2);
 		FadeOut();
+
 	}
 
+    void speedincrease()
+    {
+        speed += 0.01f;
+    }
+    void fade()
+    {
+        int i = 0;
+        for (; i < currentNode.getOptionCount(); ++i)
+        {
+            Color oldC = buttons[i].GetComponent<Image>().color;
+            
+            if (toggle)
+            {   
+                float b =  1 - Mathf.PingPong(Time.time, 1) / 1;
+                Color c = new Color(oldC.r, oldC.g, oldC.b, b);
+                buttons[i].GetComponent<Image>().color = c;
+                if (b == 0)
+                {
+                    toggle = false;
+                }
+            }
+            else
+            {
+                float b = 1 - Mathf.PingPong(Time.time + speed, 1) / 1;
+                Color c = new Color(oldC.r, oldC.g, oldC.b, b);
+                buttons[i].GetComponent<Image>().color = c;
+                Invoke("speedincrease", 2);
+            }
+        }
+    }
 	public void option0() {
 		Debug.Log ("option0: " + currentNode.getOption(0));
 		currentNode = loader.getSceneNode (currentNode.getOption (0));
@@ -132,6 +184,7 @@ public class TextBoxScript : MonoBehaviour {
 			buttons[i].GetComponent<Image>().color = c;
 			buttons[i].GetComponent<Button>().interactable = true;
 			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+
 		}
 		for (; i < buttons.Count; ++i) {
 			Color oldC = buttons[i].GetComponent<Image>().color;
