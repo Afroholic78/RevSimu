@@ -22,16 +22,14 @@ public class JSONLoader {
 	}
 
 	public SceneNode getSceneNode(string nextNodeName, SceneNode oldNode) {
-		return new SceneNode (nextNodeName, this.node, oldNode);
-		/*if(a.Count != 0) {
-			return new SceneNode (name, this.node, oldNode);
+		SceneNode next = new SceneNode (nextNodeName, this.node, oldNode);
+		if (next.getSkipMe ()) {
+			if(next.getEmptyOption() == null)
+				Debug.LogError("Empty option info on skipme");
+			
+			return new SceneNode(next.getEmptyOption(), this.node, oldNode); 
 		}
-		else {
-			string emptyOption = this.node [nextNodeName] ["emptyOption"];
-			string emptyOptionText = this.node [nextNodeName] ["emptyOptionText"];
-			return new SceneNode(name, message, backgroundFile, charName,
-			                     oldNode, usedOption, emptyOption, emptyOptionText);
-		}*/
+		return next;
 	}
 
 }
@@ -41,14 +39,13 @@ public class SceneNode {
 	private string charName = null;
 	private string message = null;
 	private string backgroundFile = null;
-	private string emptyOption = null;
-	private string emptyOptionText = null;
 	private bool isRight = false;
 	private List<string> options = null;
 	private List<string> optionsText = null;
 	private List<string> usedOptions = null;
 	private bool saveOptions = false;
-	private bool ignoreSavedOptions = false;
+	private bool skipMe = false;
+	private string emptyOption = null;
 
 	public SceneNode(string nextNodeName, JSONNode jsonNode, SceneNode prevNode) {
 		this.sceneName = nextNodeName;
@@ -58,9 +55,9 @@ public class SceneNode {
 		this.isRight = jsonNode [nextNodeName] ["isRight"].AsBool;
 		
 		this.saveOptions = jsonNode [nextNodeName] ["addUsedOption"].AsBool;
+		this.emptyOption = jsonNode [nextNodeName] ["emptyOption"];
 
 		if(saveOptions || (prevNode != null && prevNode.getSaveOptions())) {
-			Debug.LogWarning("Save..");
 			this.usedOptions = new List<string>();
 			List<string> oldSaved = prevNode.getUsedOptions();
 			if (oldSaved != null) this.usedOptions.AddRange(oldSaved);
@@ -72,7 +69,6 @@ public class SceneNode {
 			this.usedOptions = new List<string>();
 			List<string> oldSaved = prevNode.getUsedOptions();
 			if (oldSaved != null) this.usedOptions.AddRange(oldSaved);
-			Debug.LogWarning("Save..");
 		}
 
 		// Get out of the JSONArray and put it into a different collection
@@ -93,7 +89,11 @@ public class SceneNode {
 
 		// Bad number
 		if(this.options.Count != this.optionsText.Count)
-			Debug.LogWarning("Unequal amount of options/destinations for " + this.sceneName);
+			Debug.LogError("Unequal amount of options/destinations for " + this.sceneName);
+
+		if (this.options.Count == 0) {
+			skipMe = true;
+		}
 	}
 
 	public string getName() {
@@ -136,6 +136,14 @@ public class SceneNode {
 
 	public bool getSaveOptions() {
 		return this.saveOptions;
+	}
+
+	// Only the loader should touch this function
+	public bool getSkipMe() {
+		return this.skipMe;
+	}
+	public string getEmptyOption() {
+		return this.emptyOption;
 	}
 
 	public bool isRightTalking() {

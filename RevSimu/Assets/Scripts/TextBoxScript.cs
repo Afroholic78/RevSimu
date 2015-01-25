@@ -152,9 +152,7 @@ public class TextBoxScript : MonoBehaviour {
 		Debug.Log ("option0: " + currentNode.getOption(0));
 		currentNode = loader.getSceneNode (currentNode.getOption (0),
 		                                   this.currentNode);
-		convoText.text = currentNode.getMessage ();
-		leftNameText.text = currentNode.getCharName ();
-		rightNameText.text = currentNode.getCharName ();
+		setUpText ();
 		setUpOptions ();
 	}
 	
@@ -162,9 +160,7 @@ public class TextBoxScript : MonoBehaviour {
 		Debug.Log ("option1: " + currentNode.getOption(1));
 		currentNode = loader.getSceneNode (currentNode.getOption (1),
 		                                   this.currentNode);
-		convoText.text = currentNode.getMessage ();
-		leftNameText.text = currentNode.getCharName ();
-		rightNameText.text = currentNode.getCharName ();
+		setUpText ();
 		setUpOptions ();
 	}
 
@@ -172,10 +168,21 @@ public class TextBoxScript : MonoBehaviour {
 		Debug.Log ("option2: " + currentNode.getOption(2));
 		currentNode = loader.getSceneNode (currentNode.getOption (2),
 		                                   this.currentNode);
-		convoText.text = currentNode.getMessage ();
-		leftNameText.text = currentNode.getCharName ();
-		rightNameText.text = currentNode.getCharName ();
+		setUpText ();
 		setUpOptions ();
+	}
+
+	private void setUpText() {
+		convoText.text = currentNode.getMessage ();
+		if (currentNode.isRightTalking () &&
+		    !rightNameText.text.Equals(currentNode.getCharName ())) {
+			rightNameText.text = currentNode.getCharName ();
+		}
+		else if (!currentNode.isRightTalking() &&
+		         !leftNameText.text.Equals(currentNode.getCharName ())) {
+			leftNameText.text = currentNode.getCharName();
+		}
+
 	}
 
 	private void setUpOptions() {
