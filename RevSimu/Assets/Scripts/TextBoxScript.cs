@@ -28,6 +28,7 @@ public class TextBoxScript : MonoBehaviour {
 	public float fadeSpeed = 1.5f; // Speed of scene fade
 
     private bool toggle = true;
+	private bool startScene = true;
 
 	private void FadeOut() {
 		// Function fades out text boxes containing character
@@ -41,17 +42,17 @@ public class TextBoxScript : MonoBehaviour {
 
 		if (currentNode.isRightTalking() == true)
 		{
-			if (leftNameCanvasGroup.alpha <= 0) { leftNameCanvasGroup.alpha = 0; }
+			if (leftNameCanvasGroup.alpha <= 0.05f) { leftNameCanvasGroup.alpha = 0; }
 			else if (leftNameCanvasGroup.alpha > 0) { leftNameCanvasGroup.alpha -= Time.deltaTime/duration; } // left fade out 
-			if (rightNameCanvasGroup.alpha >= 1) { rightNameCanvasGroup.alpha = 1; }
+			if (rightNameCanvasGroup.alpha >= 1f) { rightNameCanvasGroup.alpha = 1; }
 			else if (rightNameCanvasGroup.alpha < 1) { rightNameCanvasGroup.alpha += Time.deltaTime/duration; } // right fade i
 		}
 
 		if (currentNode.isRightTalking() == false)
 		{
-			if (leftNameCanvasGroup.alpha >= 1) { leftNameCanvasGroup.alpha = 1; }
+			if (leftNameCanvasGroup.alpha >= 1f) { leftNameCanvasGroup.alpha = 1; }
 			else if (leftNameCanvasGroup.alpha < 1) { leftNameCanvasGroup.alpha += Time.deltaTime/duration; } // left fade in
-			if (rightNameCanvasGroup.alpha <= 0) { rightNameCanvasGroup.alpha = 0; }
+			if (rightNameCanvasGroup.alpha <= 0.05f) { rightNameCanvasGroup.alpha = 0; }
 			else if (rightNameCanvasGroup.alpha > 0) { rightNameCanvasGroup.alpha -= Time.deltaTime/duration; } // right fade out
 		}
 
@@ -115,6 +116,15 @@ public class TextBoxScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Fade in scene
+		if (startScene == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.clear, fadeSpeed * Time.deltaTime);
+			if (fader.color.a <= 0.05f) { startScene = false; } // flip boolean once fade in is over
+		}
+
 		// Perform fading operations
 		FadeOut();
 	}
@@ -178,10 +188,11 @@ public class TextBoxScript : MonoBehaviour {
 		if (convoText.text == "next_scene")
 		{
 			// Receive signal to move to next scene
-			Application.LoadLevel(Application.loadedLevel + 1);
 			GameObject faderGO = GameObject.Find("Fader");
 			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
 			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			// Load next scene
+			Application.LoadLevel(Application.loadedLevel + 1);
 		}
 		if (currentNode.isRightTalking () &&
 		    !rightNameText.text.Equals(currentNode.getCharName ())) {
