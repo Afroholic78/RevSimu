@@ -265,7 +265,6 @@ public class TextBoxScript : MonoBehaviour {
 			Sprite right = null;
 
 			// Use saved from dict
-			Debug.LogError(currentNode.getRightSpriteFilename());
 			if (this.loadedSprites.ContainsKey(currentNode.getRightSpriteFilename())){
 				right = loadedSprites[currentNode.getRightSpriteFilename()];
 			}

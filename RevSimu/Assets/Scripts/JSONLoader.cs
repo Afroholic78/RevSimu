@@ -20,9 +20,11 @@ public class JSONLoader {
 
 	public SceneNode getSceneNode(string nextNodeName, SceneNode oldNode) {
 		SceneNode next = new SceneNode (nextNodeName, this.node, oldNode);
-		if (next.getSkipMe ()) {
+		if (next.getSkipMe () && !next.getMessage().Equals("next_scene")) {
 			if(next.getEmptyOption() == null)
-				Debug.LogError("Empty option info on skipme: " + nextNodeName);
+				Debug.LogError("Empty emptyOptionInfo on skipme: " + next.getName() +
+				               ", old: " + oldNode.getName() +
+				               ", new next: " + next.getEmptyOption());
 			
 			return new SceneNode(next.getEmptyOption(), this.node, oldNode); 
 		}
