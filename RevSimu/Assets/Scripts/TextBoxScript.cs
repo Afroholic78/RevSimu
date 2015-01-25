@@ -29,6 +29,7 @@ public class TextBoxScript : MonoBehaviour {
 
     private bool toggle = true;
 	private bool startScene = true;
+	private bool endScene = false;
 
 	private void FadeOut() {
 		// Function fades out text boxes containing character
@@ -113,9 +114,8 @@ public class TextBoxScript : MonoBehaviour {
 		setUpOptions ();
 		//buttons[0].AddComponent<SpeechBubbleFloat>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void FadeInScene() {
 		// Fade in scene
 		if (startScene == true)
 		{
@@ -124,9 +124,28 @@ public class TextBoxScript : MonoBehaviour {
 			fader.color = Color.Lerp(fader.color, Color.clear, fadeSpeed * Time.deltaTime);
 			if (fader.color.a <= 0.05f) { startScene = false; } // flip boolean once fade in is over
 		}
+	}
 
-		// Perform fading operations
-		FadeOut();
+	void FadeOutScene() {
+		// Fade out scene
+		if (endScene == true)
+		{
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+			if (fader.color.a >= 1.05f) 
+			{ 
+				endScene = false; // flip boolean once fade out is over
+				Application.LoadLevel(Application.loadedLevel + 1); // Load next scene
+			}
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		FadeInScene();
+		FadeOut(); // Perform fading operations
+		FadeOutScene();
 	}
 
     void speedincrease()
@@ -185,15 +204,13 @@ public class TextBoxScript : MonoBehaviour {
 
 	private void setUpText() {
 		convoText.text = currentNode.getMessage ();
+
+		// Check if scene is over
 		if (convoText.text == "next_scene")
 		{
-			// Receive signal to move to next scene
-			GameObject faderGO = GameObject.Find("Fader");
-			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
-			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
-			// Load next scene
-			Application.LoadLevel(Application.loadedLevel + 1);
+			endScene = true;
 		}
+
 		if (currentNode.isRightTalking () &&
 		    !rightNameText.text.Equals(currentNode.getCharName ())) {
 			rightNameText.text = currentNode.getCharName ();
