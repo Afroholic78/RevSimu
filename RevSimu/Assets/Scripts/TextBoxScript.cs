@@ -24,7 +24,8 @@ public class TextBoxScript : MonoBehaviour {
 	public CanvasGroup convoCanvasGroup; // reference to dialogue canvasGroup
 	
 	private float duration = 0.15f; // Duration float used for fading
-	public float speed = 0f; // Speed of fade
+	public float speed = 0f; // Speed of text box fade
+	public float fadeSpeed = 1.5f; // Speed of scene fade
 
     private bool toggle = true;
 
@@ -178,6 +179,9 @@ public class TextBoxScript : MonoBehaviour {
 		{
 			// Receive signal to move to next scene
 			Application.LoadLevel(Application.loadedLevel + 1);
+			GameObject faderGO = GameObject.Find("Fader");
+			SpriteRenderer fader = faderGO.GetComponent<SpriteRenderer> ();
+			fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
 		}
 		if (currentNode.isRightTalking () &&
 		    !rightNameText.text.Equals(currentNode.getCharName ())) {
