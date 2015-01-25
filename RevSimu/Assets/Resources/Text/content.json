@@ -1,6 +1,6 @@
 {
 	"defaut":{"message":"", "background":"", "charName":"", "options":[]},
-	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M’lady… I wonder if she would like…",
+	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M’lady… I wonder if she would like them...",
 				 "background":"", "charName":"Fergus", "isRight":false,
 				 "options":["node1-0"],
 				 "optionsText":["next"]},
