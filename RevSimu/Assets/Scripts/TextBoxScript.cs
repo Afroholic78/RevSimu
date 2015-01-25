@@ -11,6 +11,10 @@ public class TextBoxScript : MonoBehaviour {
 
 	private List<GameObject> buttons;
 
+	private Dictionary<string, Sprite> loadedSprites;
+	private string curLeftSpriteName = null;
+	private string curRightSpriteName = null;
+
 	public Text rightNameText; // reference to text component in right name box
 	public Text leftNameText; // reference to text component in left name box
 	public Text convoText; // reference to text component in dialogue box
@@ -113,6 +117,8 @@ public class TextBoxScript : MonoBehaviour {
 		buttons.Add(GameObject.Find("OptionButton2"));
 		setUpOptions ();
 		//buttons[0].AddComponent<SpeechBubbleFloat>();
+
+		setUpSprites ();
 	}
 
 	void FadeInScene() {
@@ -184,6 +190,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		setUpText ();
 		setUpOptions ();
+		setUpSprites ();
 	}
 	
 	public void option1() {
@@ -192,6 +199,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		setUpText ();
 		setUpOptions ();
+		setUpSprites ();
 	}
 
 	public void option2() {
@@ -200,6 +208,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		setUpText ();
 		setUpOptions ();
+		setUpSprites ();
 	}
 
 	private void setUpText() {
@@ -219,7 +228,62 @@ public class TextBoxScript : MonoBehaviour {
 		         !leftNameText.text.Equals(currentNode.getCharName ())) {
 			leftNameText.text = currentNode.getCharName();
 		}
+	}
 
+	private void setUpSprites() {
+		if (this.loadedSprites == null) {
+			this.loadedSprites = new Dictionary<string, Sprite>();
+		}
+		// Left
+		if (this.curLeftSpriteName == null ||
+		    !this.curLeftSpriteName.Equals(currentNode.getLeftSpriteFilename())) {
+			Sprite left = null;
+			
+			// Use saved from dict
+			if (this.loadedSprites.ContainsKey(currentNode.getLeftSpriteFilename())){
+				left = loadedSprites[currentNode.getLeftSpriteFilename()];
+			}
+			// Load sprite
+			else {
+			// Get left sprite
+			left = Resources.Load<Sprite>("Sprites/" +
+	                                      currentNode.getLeftSpriteFilename());
+			// Don't want a null
+			if (left == null)
+				Debug.LogError("Loaded null left sprite: " + currentNode.getLeftSpriteFilename());
+				this.loadedSprites.Add(currentNode.getLeftSpriteFilename(),
+			    	                   left);
+			}
+
+			GameObject leftRenderer = GameObject.Find("LeftSprite");
+			leftRenderer.GetComponent<SpriteRenderer>().sprite = left;
+		}
+
+		// Right
+		if (this.curRightSpriteName == null ||
+		    !this.curRightSpriteName.Equals(currentNode.getRightSpriteFilename())) {
+			Sprite right = null;
+
+			// Use saved from dict
+			Debug.LogError(currentNode.getRightSpriteFilename());
+			if (this.loadedSprites.ContainsKey(currentNode.getRightSpriteFilename())){
+				right = loadedSprites[currentNode.getRightSpriteFilename()];
+			}
+			// Load sprite
+			else {
+				// Get right sprite
+				right = Resources.Load<Sprite>("Sprites/" +
+				                              currentNode.getRightSpriteFilename());
+				// Don't want a null
+				if (right == null)
+					Debug.LogError("Loaded null right sprite: " + currentNode.getRightSpriteFilename());
+				this.loadedSprites.Add(currentNode.getRightSpriteFilename(),
+				                       right);
+			}
+
+			GameObject rightRenderer = GameObject.Find("RightSprite");
+			rightRenderer.GetComponent<SpriteRenderer>().sprite = right;
+		}
 	}
 
 	private void setUpOptions() {

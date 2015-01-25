@@ -16,16 +16,13 @@ public class JSONLoader {
 		this.node = SimpleJSON.JSONNode.Parse(textAss.text);
 		if (this.node == null)
 						Debug.LogError ("Node(" + fileName + ") was null!");
-
-		//Debug.Log (node["First test"]);
-
 	}
 
 	public SceneNode getSceneNode(string nextNodeName, SceneNode oldNode) {
 		SceneNode next = new SceneNode (nextNodeName, this.node, oldNode);
 		if (next.getSkipMe ()) {
 			if(next.getEmptyOption() == null)
-				Debug.LogError("Empty option info on skipme");
+				Debug.LogError("Empty option info on skipme: " + nextNodeName);
 			
 			return new SceneNode(next.getEmptyOption(), this.node, oldNode); 
 		}

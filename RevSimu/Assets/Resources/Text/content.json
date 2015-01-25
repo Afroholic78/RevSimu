@@ -1,7 +1,7 @@
 {
 	"defaut":{"message":"", "leftSprite":"", "rightSprite":"", "charName":"", "options":[]},
 	"gamestart":{"message":"Gosh, these flowers are almost as lovely as M'lady... I wonder if she would like them...",
-				 "leftSprite":"boy_default", "rightSprite":"",
+				 "leftSprite":"boy_default", "rightSprite":"empty_sprite",
 				 "charName":"Fergus", "isRight":false,
 				 "options":["node1-0"],
 				 "optionsText":["next"]},
