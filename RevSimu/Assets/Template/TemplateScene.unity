@@ -85,6 +85,7 @@ GameObject:
   - 223: {fileID: 15313277}
   - 114: {fileID: 15313276}
   - 114: {fileID: 15313275}
+  - 225: {fileID: 15313278}
   m_Layer: 5
   m_Name: RightNameCanvas
   m_TagString: Untagged
@@ -165,6 +166,17 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!225 &15313278
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15313273}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &243456996
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +346,7 @@ GameObject:
   - 223: {fileID: 456118396}
   - 114: {fileID: 456118395}
   - 114: {fileID: 456118394}
+  - 225: {fileID: 456118398}
   m_Layer: 5
   m_Name: ConvoCanvas
   m_TagString: Untagged
@@ -417,6 +430,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &456118398
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456118393}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &530165630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1189,7 @@ GameObject:
   - 223: {fileID: 1704665016}
   - 114: {fileID: 1704665015}
   - 114: {fileID: 1704665014}
+  - 225: {fileID: 1704665017}
   m_Layer: 5
   m_Name: LeftNameCanvas
   m_TagString: Untagged
@@ -1245,6 +1270,17 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!225 &1704665017
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704665012}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1717422061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1622,9 @@ MonoBehaviour:
   rightNameBackground: {fileID: 0}
   leftNameBackground: {fileID: 0}
   convoBackground: {fileID: 0}
+  rightNameCanvasGroup: {fileID: 0}
+  leftNameCanvasGroup: {fileID: 0}
+  convoCanvasGroup: {fileID: 0}
   speed: 0
 --- !u!4 &1928019586
 Transform:

@@ -19,57 +19,33 @@ public class TextBoxScript : MonoBehaviour {
 	public Image leftNameBackground; // reference to background image in left image box
 	public Image convoBackground; // reference to backgroun image in dialogue box
 
+	public CanvasGroup rightNameCanvasGroup; // reference to right name canvasGroup
+	public CanvasGroup leftNameCanvasGroup; // reference to left name canvasGroup
+	public CanvasGroup convoCanvasGroup; // reference to dialogue canvasGroup
+
 	private bool fadeOut = false; // Fade out boolean. If false: rightNameBox is visibile, leftNameBox is invisible
 	private float duration = 1.0f; // Duration float used for fading
 	public float speed = 0f; // Speed of fade
 
+    private bool toggle = true;
 
-	private bool LoadFromFile(string filename) {
-		// Function used to read text from a file to display
-		// inside our conversation/dialogue box.
-		// NOT USED AT THE MOMENT.
-		
-		try
-		{
-			string line;
-			
-			StreamReader reader = new StreamReader(filename, Encoding.Default); // create StreamReader object to read given file
-			using(reader) // clean up the reader
-			{ 
-				do 
-				{
-					line = reader.ReadLine(); // read line
-					if (line != null) 
-					{	
-						// Update GUI conversation box here
-						Debug.Log(line); // print line to debug console
-					} 
-				}
-				
-				while (line != null);
-				reader.Close(); // close reader when we're done reading
-				return true;
+	public void FadeOut() {
+		// Function fades out text boxes containing character
+		// names deoending on who is speaking.
+
+		// If right side character is speaking, fade out
+		// If left side characters is speaking
+
+		if (fadeOut == false)
+		{ 
+			convoCanvasGroup.alpha -= Time.deltaTime/duration;
+			if (convoCanvasGroup.alpha == 0) 
+			{
+				fadeOut = true;
 			}
 		}
-		
-		catch (System.Exception e)
-		{
-			Debug.Log(e.ToString());
-			return false;
-		}
 	}
 
-	private void FadeOut(GameObject imageGO) {
-		// Function makes the passed GameObject fade out.
-		// Will be called during click and timer events
-
-		Color textureColor = renderer.material.color; // Color object, used for alpha channel
-		if (fadeOut)
-		{
-			textureColor.a = duration - Mathf.PingPong(Time.time + speed, duration) / duration;
-			renderer.material.color = textureColor;
-		}
-	}
 	
 	// Use this for initialization
 	void Start () {
@@ -85,21 +61,26 @@ public class TextBoxScript : MonoBehaviour {
 		if (currentNode == null) {
 			Debug.LogError("startNode is null");
 		}
-
+		 
 		// Find and associate text box components
 		GameObject convoGO = GameObject.Find("ConvoText");
 		GameObject convoBackgroundGO = GameObject.Find("ConvoBackground");
-		convoBackground = convoBackgroundGO.GetComponent <Image> ();
-		convoText = convoGO.GetComponent <Text> ();
-		convoText.text = currentNode.getMessage ();
+		GameObject convoCanvasGO = GameObject.Find("ConvoCanvas");
+		convoCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
+		convoBackground = convoBackgroundGO.GetComponent <Image> (); // find image
+		convoText = convoGO.GetComponent <Text> (); // find text
+		convoText.text = currentNode.getMessage (); // set text
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
+		GameObject righNameCanvasGO = GameObject.Find("RightNameCanvas");
+		rightNameCanvasGroup = convoCanvasGO.GetComponent <CanvasGroup> ();
 		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> ();
 		rightNameText = rightNameGO.GetComponent <Text> ();
 
 		GameObject leftNameGO = GameObject.Find("LeftNameText");
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
+		GameObject leftNameCanvasGO = GameObject.Find("LeftNameCanvas");
 		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
 		leftNameText.text = currentNode.getCharName ();
@@ -115,11 +96,48 @@ public class TextBoxScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		//convoText.text = "LOL THIS IS ACTUALLY WORKING!";
 		//rightNameText.text = "Ladeh";
 		//leftNameText.text = "Bloke";
+        Invoke("fade", 2);
+
+		// Test fade out
+		//Invoke ("FadeOut(convoBackground)", 2);
+		FadeOut();
+
 	}
 
+    void speedincrease()
+    {
+        speed += 0.01f;
+    }
+    void fade()
+    {
+        int i = 0;
+        for (; i < currentNode.getOptionCount(); ++i)
+        {
+            Color oldC = buttons[i].GetComponent<Image>().color;
+            
+            if (toggle)
+            {   
+                float b =  1 - Mathf.PingPong(Time.time, 1) / 1;
+                Color c = new Color(oldC.r, oldC.g, oldC.b, b);
+                buttons[i].GetComponent<Image>().color = c;
+                if (b == 0)
+                {
+                    toggle = false;
+                }
+            }
+            else
+            {
+                float b = 1 - Mathf.PingPong(Time.time + speed, 1) / 1;
+                Color c = new Color(oldC.r, oldC.g, oldC.b, b);
+                buttons[i].GetComponent<Image>().color = c;
+                Invoke("speedincrease", 2);
+            }
+        }
+    }
 	public void option0() {
 		Debug.Log ("option0: " + currentNode.getOption(0));
 		currentNode = loader.getSceneNode (currentNode.getOption (0),
@@ -155,6 +173,7 @@ public class TextBoxScript : MonoBehaviour {
 			buttons[i].GetComponent<Image>().color = c;
 			buttons[i].GetComponent<Button>().interactable = true;
 			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+
 		}
 		for (; i < buttons.Count; ++i) {
 			Color oldC = buttons[i].GetComponent<Image>().color;
