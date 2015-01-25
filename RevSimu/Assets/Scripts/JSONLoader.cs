@@ -34,7 +34,16 @@ public class JSONLoader {
 		for (int i = 0; i < a.Count; ++i) {
 			options.Add (a[i]);
 		}
-		return new SceneNode (name, message, backgroundFile, charName, options);
+
+		// Get out of the JSONArray and put it into a different collection
+		JSONArray a2 = this.node [nodeName] ["optionsText"].AsArray;
+		List<string> optionsText = new List<string> ();
+		
+		for (int i = 0; i < a2.Count; ++i) {
+			optionsText.Add (a2[i]);
+		}
+
+		return new SceneNode (name, message, backgroundFile, charName, options, optionsText);
 	}
 
 }
@@ -43,16 +52,22 @@ public class SceneNode {
 	private string sceneName = null;
 	private string charName = null;
 	private string message = null;
-	private List<string> options = null;
 	private string backgroundFile = null;
+	private List<string> options = null;
+	private List<string> optionsText = null;
 
 	public SceneNode(string sceneName, string message, string backgroundFile,
-	                 string charName, List<string> options) {
+	                 string charName, List<string> options, List<string> optionsText) {
 		this.sceneName = sceneName;
 		this.message = message;
 		this.backgroundFile = backgroundFile;
 		this.charName = charName;
 		this.options = options;
+		this.optionsText = optionsText;
+
+		// Bad number
+		if(this.options.Count != this.optionsText.Count)
+			Debug.LogWarning("Unequal amount of options/destinations for " + this.sceneName);
 	}
 
 	public string getName() {
@@ -68,6 +83,13 @@ public class SceneNode {
 			return null;
 		}
 		return options[index];
+	}
+
+	public string getOptionText(int index) {
+		if (index >= this.optionsText.Count) {
+			return null;
+		}
+		return optionsText[index];
 	}
 
 	public int getOptionCount() {

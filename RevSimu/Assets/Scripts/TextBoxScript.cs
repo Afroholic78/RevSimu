@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
 public class TextBoxScript : MonoBehaviour {
 	private JSONLoader loader = null;
 	private SceneNode currentNode = null;
+
+	private List<GameObject> buttons;
 
 	public Text rightNameText; // reference to text component in right name box
 	public Text leftNameText; // reference to text component in left name box
@@ -78,8 +81,8 @@ public class TextBoxScript : MonoBehaviour {
 			Debug.LogError("Loader was null...");
 		}
 
-		SceneNode startNode = loader.getSceneNode (control.getStartNode ());
-		if (startNode == null) {
+		this.currentNode = loader.getSceneNode (control.getStartNode ());
+		if (currentNode == null) {
 			Debug.LogError("startNode is null");
 		}
 
@@ -88,7 +91,7 @@ public class TextBoxScript : MonoBehaviour {
 		GameObject convoBackgroundGO = GameObject.Find("ConvoBackground");
 		convoBackground = convoBackgroundGO.GetComponent <Image> ();
 		convoText = convoGO.GetComponent <Text> ();
-		convoText.text = startNode.getMessage ();
+		convoText.text = currentNode.getMessage ();
 
 		GameObject rightNameGO = GameObject.Find("RightNameText");
 		GameObject rightNameBackgroundGO = GameObject.Find("RightNameBackground");
@@ -99,8 +102,15 @@ public class TextBoxScript : MonoBehaviour {
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
 		leftNameBackground = LeftNameBackgroundGO.GetComponent <Image> ();
 		leftNameText = leftNameGO.GetComponent <Text> ();
-		leftNameText.text = startNode.getCharName ();
+		leftNameText.text = currentNode.getCharName ();
 
+
+		buttons = new List<GameObject> ();
+		buttons.Add(GameObject.Find("OptionButton0"));
+		buttons.Add(GameObject.Find("OptionButton1"));
+		buttons.Add(GameObject.Find("OptionButton2"));
+		setUpOptions ();
+		buttons[0].AddComponent<SpeechBubbleFloat>();
 	}
 	
 	// Update is called once per frame
@@ -108,5 +118,39 @@ public class TextBoxScript : MonoBehaviour {
 		//convoText.text = "LOL THIS IS ACTUALLY WORKING!";
 		//rightNameText.text = "Ladeh";
 		//leftNameText.text = "Bloke";
+	}
+
+	public void option0() {
+		Debug.Log ("option1: " + currentNode.getOption(0));
+		currentNode = loader.getSceneNode (currentNode.getOption (0));
+		convoText.text = currentNode.getMessage ();
+		setUpOptions ();
+	}
+
+	
+	
+	public void option1() {
+	}
+	
+	public void option2() {
+	}
+
+	private void setUpOptions() {
+		int i = 0;
+		for (; i < currentNode.getOptionCount(); ++i) {
+			Color oldC = buttons[i].GetComponent<Image>().color;
+			Color c = new Color(oldC.r, oldC.g, oldC.b, 255);
+			buttons[i].GetComponent<Image>().color = c;
+			buttons[i].GetComponent<Button>().interactable = true;
+			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+		}
+		for (; i < buttons.Count; ++i) {
+			Color oldC = buttons[i].GetComponent<Image>().color;
+			Color c = new Color(oldC.r, oldC.g, oldC.b, 0);
+			buttons[i].GetComponent<Image>().color = c;
+			buttons[i].GetComponent<Button>().interactable = false;
+			buttons[i].GetComponentInChildren<Text>().text = currentNode.getOptionText(i);
+		}
+		
 	}
 }
