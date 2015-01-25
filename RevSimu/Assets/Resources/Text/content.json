@@ -52,7 +52,7 @@
 				 "optionsText":["next"],
 				 "ignoreUsedOptions":true},
 	"confesslove2":{"message":"What are you still doing here, you oaf!",
-				 "leftSprite":"boy_default", "rightSprite":"girl_angry",
+				 "leftSprite":"boy_sad", "rightSprite":"girl_angry",
 				 "charName":"Jacquelyn", "isRight":true,
 				 "options":["endbenice"],
 				 "optionsText":["next"],
@@ -84,6 +84,7 @@
 				 "charName":"Jacquelyn", "isRight":true,
 				 "options":["node1-5"],
 				 "optionsText":["next"]},
+<<<<<<< HEAD
 	"node1-5next_scene":{"message":"next_scene",
 				 "leftSprite":"boy_default", "rightSprite":"girl_default",
 				 "charName":"Jacquelyn", "isRight":true,
@@ -130,4 +131,8 @@
 				 "options":["node2-9"],
 				 "optionsText":["next"]},			 
 	
+=======
+	"node1-5":{"message":"next_scene"}
+
+>>>>>>> origin/master
 }

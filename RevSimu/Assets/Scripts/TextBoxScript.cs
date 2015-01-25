@@ -213,26 +213,29 @@ public class TextBoxScript : MonoBehaviour {
 	}
 
 	private void setUpText() {
-		convoText.text = currentNode.getMessage ();
 
 		// Check if scene is over
-		if (convoText.text == "next_scene")
+		if (currentNode.getMessage() == "next_scene")
 		{
 			endScene = true;
 			return; // force update()
 		}
 
-		if (currentNode.isRightTalking () &&
-		    !rightNameText.text.Equals(currentNode.getCharName ())) {
-			rightNameText.text = currentNode.getCharName ();
-		}
-		else if (!currentNode.isRightTalking() &&
-		         !leftNameText.text.Equals(currentNode.getCharName ())) {
-			leftNameText.text = currentNode.getCharName();
+		if (!endScene) {
+			convoText.text = currentNode.getMessage ();
+			if (currentNode.isRightTalking () &&
+			    !rightNameText.text.Equals(currentNode.getCharName ())) {
+				rightNameText.text = currentNode.getCharName ();
+			}
+			else if (!currentNode.isRightTalking() &&
+			         !leftNameText.text.Equals(currentNode.getCharName ())) {
+				leftNameText.text = currentNode.getCharName();
+			}
 		}
 	}
 
 	private void setUpSprites() {
+		if (endScene) return;
 		if (this.loadedSprites == null) {
 			this.loadedSprites = new Dictionary<string, Sprite>();
 		}
@@ -267,7 +270,6 @@ public class TextBoxScript : MonoBehaviour {
 			Sprite right = null;
 
 			// Use saved from dict
-			Debug.LogError(currentNode.getRightSpriteFilename());
 			if (this.loadedSprites.ContainsKey(currentNode.getRightSpriteFilename())){
 				right = loadedSprites[currentNode.getRightSpriteFilename()];
 			}
@@ -289,6 +291,7 @@ public class TextBoxScript : MonoBehaviour {
 	}
 
 	private void setUpOptions() {
+		if (endScene) return;
 		int i = 0;
 		for (; i < currentNode.getOptionCount(); ++i) {
 			// Make next button invisible
