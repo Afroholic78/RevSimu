@@ -40,38 +40,19 @@ public class TextBoxScript : MonoBehaviour {
 
 		if (currentNode.isRightTalking() == true)
 		{
-			// Limit arithmetic operations
-			if (leftNameCanvasGroup.alpha <= 0) { leftNameCanvasGroup.alpha = 0; }
-			if (rightNameCanvasGroup.alpha >= 1) { rightNameCanvasGroup.alpha = 1; }
-
 			leftNameCanvasGroup.alpha -= Time.deltaTime/duration; // left fade out
 			rightNameCanvasGroup.alpha += Time.deltaTime/duration; // right fade in
 		}
 
 		if (currentNode.isRightTalking() == false)
 		{
-			// Limit arithmetic operations
-			if (leftNameCanvasGroup.alpha >= 1) { leftNameCanvasGroup.alpha = 0; }
-			if (rightNameCanvasGroup.alpha <= 0) { rightNameCanvasGroup.alpha = 1; }
-
 			leftNameCanvasGroup.alpha += Time.deltaTime/duration; // left fade in
 			rightNameCanvasGroup.alpha -= Time.deltaTime/duration; // right fade out
 		}
 
 		// Track alpha values in debug
-		//Debug.LogWarning(leftNameCanvasGroup.alpha);
+		Debug.LogWarning(leftNameCanvasGroup.alpha);
 		Debug.LogWarning(rightNameCanvasGroup.alpha);
-		
-		/*
-		if (fadeOut == false)
-		{ 
-			convoCanvasGroup.alpha -= Time.deltaTime/duration;
-			if (convoCanvasGroup.alpha == 0) 
-			{
-				fadeOut = true;
-			}
-		}
-		*/
 	}
 	
 	// Use this for initialization
@@ -104,8 +85,7 @@ public class TextBoxScript : MonoBehaviour {
 		rightNameCanvasGroup = righNameCanvasGO.GetComponent <CanvasGroup> (); // find canvas group
 		rightNameBackground = rightNameBackgroundGO.GetComponent <Image> (); // find image
 		rightNameText = rightNameGO.GetComponent <Text> (); // find text
-		//rightNameText.text = currentNode.getCharName (); // set text
-		// TODO When should I get text for character on the right?
+		rightNameText.text = currentNode.getCharName (); // set text
 
 		GameObject leftNameGO = GameObject.Find("LeftNameText");
 		GameObject LeftNameBackgroundGO = GameObject.Find("LeftNameBackground");
@@ -116,8 +96,8 @@ public class TextBoxScript : MonoBehaviour {
 		leftNameText.text = currentNode.getCharName (); // set text
 
 		// Decide which name box to show first
-		if (currentNode.isRightTalking() == true) { leftNameCanvasGroup.alpha = 0; }
-		if (currentNode.isRightTalking() == false) { rightNameCanvasGroup.alpha = 0; }
+		//if (currentNode.isRightTalking() == true) { leftNameCanvasGroup.alpha = 0; }
+		//if (currentNode.isRightTalking() == false) { rightNameCanvasGroup.alpha = 0; }
 
 
 		buttons = new List<GameObject> ();
@@ -131,7 +111,7 @@ public class TextBoxScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Test fade out
-		FadeOut();
+		// FadeOut();
 	}
 
     void speedincrease()
@@ -170,6 +150,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
+		rightNameText.text = currentNode.getCharName ();
 		setUpOptions ();
 	}
 	
@@ -179,6 +160,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
+		rightNameText.text = currentNode.getCharName ();
 		setUpOptions ();
 	}
 
@@ -188,6 +170,7 @@ public class TextBoxScript : MonoBehaviour {
 		                                   this.currentNode);
 		convoText.text = currentNode.getMessage ();
 		leftNameText.text = currentNode.getCharName ();
+		rightNameText.text = currentNode.getCharName ();
 		setUpOptions ();
 	}
 
