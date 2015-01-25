@@ -177,6 +177,7 @@ public class TextBoxScript : MonoBehaviour {
 		if (convoText.text == "next_scene")
 		{
 			// Receive signal to move to next scene
+			Application.LoadLevel(Application.loadedLevel + 1);
 		}
 		if (currentNode.isRightTalking () &&
 		    !rightNameText.text.Equals(currentNode.getCharName ())) {

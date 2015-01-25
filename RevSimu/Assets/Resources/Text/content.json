@@ -68,5 +68,7 @@
 	"node1-4business":{"message":"Oh!  It's all ready M'lady.  I'll drop it off at your father's shop right away",
 				 "background":"", "charName":"Jacquelyn", "isRight":true,
 				 "options":["node1-4"],
-				 "optionsText":["next"]}
+				 "optionsText":["next"]},
+	"node1-5":{"message":"next_scene"}
+
 }
