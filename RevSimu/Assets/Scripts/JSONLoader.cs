@@ -66,7 +66,7 @@ public class SceneNode {
 				this.usedOptions.Add(nextNodeName);
 			}
 		}
-		else if (jsonNode [nextNodeName] ["ignoreUsedOptions"].AsBool) {
+		else if (prevNode != null && jsonNode [nextNodeName] ["ignoreUsedOptions"].AsBool) {
 			this.usedOptions = new List<string>();
 			List<string> oldSaved = prevNode.getUsedOptions();
 			if (oldSaved != null) this.usedOptions.AddRange(oldSaved);
