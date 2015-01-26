@@ -306,7 +306,7 @@ public class TextBoxScript : MonoBehaviour {
 		}
 
 
-		if (!endScene) {
+		if (!(endScene || endScene1 || endScene2 || endScene3 || endScene4)) {
 			convoText.text = currentNode.getMessage ();
 			if (currentNode.isRightTalking () &&
 			    !rightNameText.text.Equals(currentNode.getCharName ())) {
