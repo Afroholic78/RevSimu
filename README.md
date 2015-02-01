@@ -9,7 +9,7 @@ A *Breakup Crew* Production
 
 ## Game Description:
 You are stuck in an arranged marriage. You're trying to escape!  
-This game was created with love in devotion using the Unity engine in _48 hours_ as part of the Global Game Jam.
+This game was created with exhausted love and tireless devotion using the Unity engine in _48 hours_ as part of the Global Game Jam.
 
 ## Try Our Game:
 You can download and play our game from our [Global Game Jam page](http://globalgamejam.org/2015/games/breakup-quest)!
