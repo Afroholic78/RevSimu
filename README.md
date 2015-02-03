@@ -1,7 +1,9 @@
 # Breakup Quest
 Global Game Jam  
 January 2015, Edmonton, AB, Canada  
-A *Breakup Crew* Production
+A *Breakup Crew* Production  
+
+Game Jam Theme: *What do we do now?*
 
 ![alt text](https://github.com/Afroholic78/RevSimu/blob/master/RevSimu/Assets/Resources/Sprites/mainMenu_title.png "Breakup Quest logo")
 
